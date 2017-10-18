@@ -1,0 +1,7 @@
+<h2>Adding Pets</h2>
+
+<%= form_for @pet do |form| %>
+	<%= render partial: '/pets/form', object: form %>
+
+	<%= form.submit "Create" %>
+<% end %>
