@@ -1,0 +1,38 @@
+<%= form_for :search, url: animal_shelters_search_path, method: :get do |form| %>
+    <%= form.label :company_name, "Please enter company name" %>
+    <%= form.text_field :company_name %>   
+
+     <%= form.submit 'Search' %>     
+<% end %>
+
+  <table border>
+  <tr>
+      <th>Company Id</th>
+      <th>Company Name</th>
+      <th>Location</th>
+      <th>Created By</th>
+  </tr>
+<% @companies.each do |company| %>
+    
+  <tr>
+      <td><%= company.id %></td>
+      <td><%= company.company_name %></td>
+      <td><%= company.company_address1%> <%= company.company_address2 %> <%= company.city%> <%= company.state %> <%= company.postcode %></td>
+      <td><%= company.created_by %></td>
+  </tr>
+    <% end %>
+  </table>
+
+<%= form_for :add_id, url: add_id_path, method: :patch do |form| %>
+    <%= form.label :animal_shelter_id, "Please enter company name" %>
+    <%= form.text_field :animal_shelter_id %>   
+
+     <%= form.submit 'OK' %>     
+<% end %>
+
+
+<br>
+<%= link_to "Skip", root_path %>
+<br>
+
+<%= link_to "Register Company", new_animal_shelter_path %>
