@@ -1,0 +1,30 @@
+<%= form.label :company_name %>
+<%= form.text_field :company_name%>
+<br>
+
+<%= form.label :office_number %>
+<%= form.number_field :office_number %>
+<br>
+
+<%= form.label :company_address1, "Company address line 1" %>
+<%= form.text_field :company_address1 %>
+<br>
+
+<%= form.label :company_address2, "Company address line 2" %>
+<%= form.text_field :company_address2 %>
+<br>
+
+<%= form.label :city %>
+<%= form.text_field :city%>
+<br>
+
+<%= form.label :state %>
+<%= form.select(:state, options_for_select([['JOHOR', 'JOHOR'],['KEDAH', 'KEDAH'],['KELANTAN', 'KELANTAN'],['KL', 'KL'],['MELAKA', 'MELAKA'],['N.SEMBILAN','N.SEMBILAN'],['P.PENANG', 'P.PENANG'],['PERAK', 'PERAK'],['PERLIS', 'PERLIS'],['SABAH', 'SABAH'],['SARAWAK', 'SARAWAK'], ['SELANGOR', 'SELANGOR'], ['TERENGGANU', 'TERENGGANU']])) %>
+<br>
+  
+<%= form.label :postcode %>
+<%= form.number_field :postcode %>
+<br>
+
+<%= form.hidden_field :created_by, value: current_user.first_name + " " + current_user.last_name  %>
+<br>

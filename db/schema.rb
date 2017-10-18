@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018082442) do
+ActiveRecord::Schema.define(version: 20171018083345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animal_shelters", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "office_number"
+    t.string   "company_address1"
+    t.string   "company_address2"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "postcode"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
