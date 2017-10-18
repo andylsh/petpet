@@ -14,7 +14,7 @@ class User < ApplicationRecord
 	validates :password_confirmation, presence: true, allow_nil: true
 	validates :role, presence: true
 	enum role: { normal_user: 0, animal_shelter: 1, admin: 2 }
-	# belongs_to :animal_shelter, optional: true
+	belongs_to :animal_shelter, optional: true
 	# has_many :pets
 	
 end
