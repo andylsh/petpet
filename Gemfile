@@ -33,12 +33,21 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'rest-client'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-given'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
+  gem 'shoulda-callback-matchers'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
 end
 
 group :development do

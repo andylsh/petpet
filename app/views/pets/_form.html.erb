@@ -1,3 +1,21 @@
+<%= form.label :pet_type %>
+<%= radio_button_tag("pet[pet_type]", "dog", true) %>
+<%= label_tag(:role_child, "Dog") %>
+<%= radio_button_tag("pet[pet_type]", "cat") %>
+<%= label_tag(:age_adult, "cat") %>
+<br>
+
+<div id ="dog" >
+	<%= image_tag @dogs["message"], size: "200x200" %>
+	<%= form.hidden_field :photo, value: @dogs["message"]%>
+</div>
+<br>
+
+<div id ="cat" >
+	<img src="http://placehold.it/200x200/EEE">
+</div>
+<br>
+
 <%= form.label :name %>
 <%= form.text_field :name%>
 <br>
@@ -12,13 +30,6 @@
 
 <%= form.label :description %>
 <%= form.text_area :description %>
-<br>
-
-<%= form.label :pet_type %>
-<%= radio_button_tag("pet[pet_type]", "dog", true) %>
-<%= label_tag(:role_child, "Dog") %>
-<%= radio_button_tag("pet[pet_type]", "cat") %>
-<%= label_tag(:age_adult, "cat") %>
 <br>
 
 <%= form.hidden_field :animal_shelter_id, value: current_user.animal_shelter_id %>
