@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-	class User < ApplicationRecord::
 	
 	has_secure_password
 	validates :first_name, presence: true, length: {in: 2..15, too_short: "Minimum characters is 2", too_long: "Maximum characters is 15"}, format: { with: /\A[a-zA-Z]+\z/, message: "Only letters allowed" }
@@ -15,6 +14,11 @@ class User < ApplicationRecord
 	validates :role, presence: true
 	enum role: { normal_user: 0, animal_shelter: 1, admin: 2 }
 	belongs_to :animal_shelter, optional: true
-	# has_many :pets
+	has_many :pets
+	before_save :full_name
 	
+	def full_name
+		first_name + " " + last_name
+	end
 end
+

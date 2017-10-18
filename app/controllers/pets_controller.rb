@@ -6,6 +6,9 @@ class PetsController < ApplicationController
 
 	def new
 		@pet = Pet.new
+		response = RestClient.get("https://dog.ceo/api/breeds/image/random")
+		@dogs = JSON.parse(response.body)
+
 	end
 
 	def create
@@ -16,9 +19,16 @@ class PetsController < ApplicationController
 				flash[:failure] = "Sorry, you must register your company id"
 			else
 				if @pet.valid?
-					@pet.save
-					flash[:success] = "Added pets"
-					redirect_to pets_path
+					if @pet.photo == "dog"
+						@pet.save
+						flash[:success] = "Added dog"
+						redirect_to pets_path
+					else
+						@pet.photo = "http://placehold.it/200x200/EEE"
+						@pet.save
+						flash[:success] = "Added cat"
+						redirect_to pets_path
+					end
 				else
 					flash[:failure] = @pet.errors.full_messages
 					redirect_to new_pet_path
@@ -30,8 +40,15 @@ class PetsController < ApplicationController
 		end
 	end
 
+	def update
+		@pet = Pet.find(params[:id])
+		if @pet.update(verification: true, user_id: session[:current_user_id])
+			redirect_to pets_path
+		end
+	end
+
 	private
 	def pet_params
-		params.require(:pet).permit(:name, :age_year, :age_month, :description, :pet_type, :animal_shelter_id, :staff_id)
+		params.require(:pet).permit(:name, :age_year, :age_month, :description, :pet_type, :animal_shelter_id, :staff_id, :photo)
 	end
 end

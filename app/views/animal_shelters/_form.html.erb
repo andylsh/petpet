@@ -26,5 +26,5 @@
 <%= form.number_field :postcode %>
 <br>
 
-<%= form.hidden_field :created_by, value: current_user.first_name + " " + current_user.last_name  %>
+<%= form.hidden_field :created_by, value: current_user.full_name %>
 <br>
