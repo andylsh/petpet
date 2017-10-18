@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   root "users#index"
 
   get '/animal_shelters/search' => 'animal_shelters#search', as: :animal_shelters_search
-  resources :users
 
+  patch '/users/id' => 'animal_shelters#add_id', as: :add_id
+  resources :users
+  resources :sessions, only: [:create]
   resources :animal_shelters
+
+  get "/sign_in" => "sessions#new", as: "sign_in"
+  delete "/sign_out" => "sessions#destroy", as: "sign_out"
+
 end
