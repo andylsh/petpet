@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018083345) do
+ActiveRecord::Schema.define(version: 20171018084647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,9 +39,12 @@ ActiveRecord::Schema.define(version: 20171018083345) do
     t.integer  "postcode"
     t.string   "email"
     t.string   "password_digest"
-    t.integer  "role",            default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "role",              default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "animal_shelter_id"
+    t.index ["animal_shelter_id"], name: "index_users_on_animal_shelter_id", using: :btree
   end
 
+  add_foreign_key "users", "animal_shelters"
 end
