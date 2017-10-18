@@ -1,7 +1,7 @@
 class AnimalShelter < ApplicationRecord
 
 	has_many :users
-	has_many :pets
+	has_many :pets, , dependent: :destroy
 	validates :company_name, presence: true, uniqueness: { message: "Company already exists" }
 	validates :office_number, numericality: { only_integer: true }, format: {with: /\d{10}/, message: "Please enter valid phone number"}
 	validates :company_address1, presence: true

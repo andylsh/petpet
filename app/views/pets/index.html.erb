@@ -22,21 +22,27 @@
 		<td><%= pet.description %></td>
 		<td><%= pet.pet_type %></td>
 		<td><%= pet.animal_shelter.company_name %> </td>
-		<td><%= pet.staff.first_name %></td>
+		<td><%= pet.staff.full_name %></td>
 		<td><%= pet.animal_shelter.company_address1 %> <%= pet.animal_shelter.company_address2 %> <%= pet.animal_shelter.city %> <%= pet.animal_shelter.state %> <%= pet.animal_shelter.postcode %></td>
 		<% if !logged_in? %>
-			<td>Adopt</td>
-		<% elsif current_user.role == "normal_user"  %>
-			<% if pet.verification == false%>
+			<td>Adopt </td>
+		<% elsif current_user.role == "normal_user" %>
+			<% if pet.verification == false %>
 				<td><%= button_to "Adopt", pet_path(pet), :method => :put %></td>
+			<% end %>
+		<% elsif current_user.role == "animal_shelter" %>
+			<% if pet.verification == false %>
+				<td> Adopt </td>
+				<td><%= link_to "Delete", pet_path(pet), method: "delete" %></td>
 			<% else %>
-			 	<td> Adopted </td>
-			 <% end %>
-		<% elsif logged_in? && current_user.role == "animal_shelter" %>
-			<td><%= link_to "Delete", root_path %></td> 	
+				<td> Adopted </td>
+			<% end %> 
 		<% end %>
-		<td><%= User.full_name %></td>
+
 	</tr>
 <% end %>
 
 </table>
+
+
+
