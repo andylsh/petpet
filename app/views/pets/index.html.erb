@@ -2,6 +2,7 @@
 
 <table> 
 	<tr>
+		<th></th>
 		<th>Name</th>
 		<th>Age in Year</th>
 		<th>Age in Month</th>
@@ -9,10 +10,12 @@
 		<th>Pet Type</th>
 		<th>Company Name </th>
 		<th>Posted By</th>
+		<th>Location</th>
 	</tr>
 
 <% @pets.each do |pet| %>
 	<tr>
+		<td><%= image_tag pet.photo, size: "200x200" %></td>
 		<td><%= pet.name %></td>
 		<td><%= pet.age_year %></td> 
 		<td><%= pet.age_month %></td>
@@ -20,11 +23,19 @@
 		<td><%= pet.pet_type %></td>
 		<td><%= pet.animal_shelter.company_name %> </td>
 		<td><%= pet.staff.first_name %></td>
-		<% if !logged_in? || current_user.role == "normal_user"  %>
-			<td><%= link_to "Adopt", root_path %></td>
-		<% else %>
+		<td><%= pet.animal_shelter.company_address1 %> <%= pet.animal_shelter.company_address2 %> <%= pet.animal_shelter.city %> <%= pet.animal_shelter.state %> <%= pet.animal_shelter.postcode %></td>
+		<% if !logged_in? %>
+			<td>Adopt</td>
+		<% elsif current_user.role == "normal_user"  %>
+			<% if pet.verification == false%>
+				<td><%= button_to "Adopt", pet_path(pet), :method => :put %></td>
+			<% else %>
+			 	<td> Adopted </td>
+			 <% end %>
+		<% elsif logged_in? && current_user.role == "animal_shelter" %>
 			<td><%= link_to "Delete", root_path %></td> 	
 		<% end %>
+		<td><%= User.full_name %></td>
 	</tr>
 <% end %>
 
