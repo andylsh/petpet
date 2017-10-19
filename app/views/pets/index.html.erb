@@ -14,7 +14,7 @@
 	</tr>
 
 <% @pets.each do |pet| %>
-	<tr>
+	<tr id="pet_<%= pet.id %>">
 		<td><%= image_tag pet.photo, size: "200x200" %></td>
 		<td><%= pet.name %></td>
 		<td><%= pet.age_year %></td> 
@@ -33,7 +33,7 @@
 		<% elsif current_user.role == "animal_shelter" %>
 			<% if pet.verification == false %>
 				<td> Adopt </td>
-				<td><%= link_to "Delete", pet_path(pet), method: "delete", data: {confirm: 'Are you sure?' },  id: "delete", remote: true %></td>
+				<td><%= link_to "Delete", pet_path(pet), method: "delete", data: {confirm: 'Are you sure?' }, remote: true %></td>
 			<% else %>
 				<td> Adopted </td>
 			<% end %> 

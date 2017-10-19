@@ -48,10 +48,16 @@ class PetsController < ApplicationController
 			if @pet.staff_id == @user.id && @pet.animal_shelter.company_name == @user.animal_shelter.company_name
 				@pet.destroy
 				flash[:success] = "Removed successfully"
- 				redirect_to pets_path
+				respond_to do |format|
+					format.html { redirect_to pets_path }
+					format.js
+				end
  			else
  				flash[:failed] = "You do not have the authorization"
- 				redirect_to pets_path
+ 				respond_to do |format|
+ 				format.html { redirect_to pets_path }
+ 				format.js
+ 				end 
  			end
 		end
 	end
