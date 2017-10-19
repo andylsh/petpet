@@ -17,7 +17,7 @@
   <tr>
       <td><%= company.id %></td>
       <td><%= company.company_name %></td>
-      <td><%= company.company_address1%> <%= company.company_address2 %> <%= company.city%> <%= company.state %> <%= company.postcode %></td>
+      <td><%= company.location %></td>
       <td><%= company.created_by %></td>
   </tr>
     <% end %>
@@ -35,4 +35,4 @@
 <%= link_to "Skip", root_path %>
 <br>
 
-<%= link_to "Register Company", new_animal_shelter_path %>
+<%= link_to "Register Company", new_animal_shelter_path, id: "register_link", remote: true %>

@@ -23,7 +23,7 @@
 		<td><%= pet.pet_type %></td>
 		<td><%= pet.animal_shelter.company_name %> </td>
 		<td><%= pet.staff.full_name %></td>
-		<td><%= pet.animal_shelter.company_address1 %> <%= pet.animal_shelter.company_address2 %> <%= pet.animal_shelter.city %> <%= pet.animal_shelter.state %> <%= pet.animal_shelter.postcode %></td>
+		<td><%= pet.animal_shelter.locatopn %> </td>
 		<% if !logged_in? %>
 			<td>Adopt </td>
 		<% elsif current_user.role == "normal_user" %>
@@ -33,7 +33,7 @@
 		<% elsif current_user.role == "animal_shelter" %>
 			<% if pet.verification == false %>
 				<td> Adopt </td>
-				<td><%= link_to "Delete", pet_path(pet), method: "delete" %></td>
+				<td><%= link_to "Delete", pet_path(pet), method: "delete", data: {confirm: 'Are you sure?' },  id: "delete", remote: true %></td>
 			<% else %>
 				<td> Adopted </td>
 			<% end %> 
@@ -43,6 +43,3 @@
 <% end %>
 
 </table>
-
-
-

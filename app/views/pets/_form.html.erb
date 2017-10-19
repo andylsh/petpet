@@ -4,16 +4,17 @@
 <%= radio_button_tag("pet[pet_type]", "cat") %>
 <%= label_tag(:age_adult, "cat") %>
 <br>
-
-<div id ="dog" >
-	<%= image_tag @dogs["message"], size: "200x200" %>
-	<%= form.hidden_field :photo, value: @dogs["message"]%>
+<div id= "dog" >
+	<%= image_tag(@dogs["message"], size: "200x200", id: "image_dog")%>
 </div>
 <br>
 
-<div id ="cat" >
-	<img src="http://placehold.it/200x200/EEE">
+<div id="cat" >
+	<%= image_tag("http://placehold.it/200x200/EEE", id: "image_cat") %>
 </div>
+<br>
+
+<%= form.hidden_field :photo, value: @dogs["message"]%>
 <br>
 
 <%= form.label :name %>

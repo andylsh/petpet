@@ -20,27 +20,9 @@ class PetsController < ApplicationController
 				redirect_to pets_path
 			else
 				if @pet.valid?
-					Pet.all.each do |pet|
-						if pet.name == @pet.name 
-							# if pet.pet_type == @pet.pet_type 
-								if pet.animal_shelter.company_name == @user.animal_shelter.company_name
-									flash[:failure] = "Sorry someone added the pet"
-									redirect_to new_pet_path 
-								else
-									if @pet.pet_type == "dog"
-										@pet.save
-										flash[:success] = "Added dog"
-										redirect_to pets_path
-									else
-										@pet.photo = "http://placehold.it/200x200/EEE"
-										@pet.save
-										flash[:success] = "Added cat"
-										redirect_to pets_path
-									end
-								# end
-							end
-						end
-					end
+					@pet.save
+					flash[:success] = "Added pet"
+					redirect_to pets_path
 				else
 					flash[:failure] = @pet.errors.full_messages
 					redirect_to new_pet_path

@@ -1,3 +1,5 @@
+<%= form_for @company do |form| %>
+
 <%= form.label :company_name %>
 <%= form.text_field :company_name%>
 <br>
@@ -28,3 +30,9 @@
 
 <%= form.hidden_field :created_by, value: current_user.full_name %>
 <br>
+
+		<%= hidden_field(:user, :animal_shelter_id) %>
+		
+        <%= form.submit "create" %>
+<% end %>
+		
