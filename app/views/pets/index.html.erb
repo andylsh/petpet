@@ -23,7 +23,7 @@
 		<td><%= pet.pet_type %></td>
 		<td><%= pet.animal_shelter.company_name %> </td>
 		<td><%= pet.staff.full_name %></td>
-		<td><%= pet.animal_shelter.locatopn %> </td>
+		<td><%= pet.animal_shelter.location %> </td>
 		<% if !logged_in? %>
 			<td>Adopt </td>
 		<% elsif current_user.role == "normal_user" %>
