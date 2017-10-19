@@ -42,9 +42,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-given'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
-  gem 'shoulda-callback-matchers'
   gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
